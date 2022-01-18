@@ -7,12 +7,9 @@ import { galleryItems } from './gallery-items';
 const galleryEl = document.querySelector('.gallery');
 
 const createGalleryItemEl = ({ preview, original, description } = {}) => {
-    return `
-    <li class="gallery__item">
-    <a class="gallery__item" href=${original}>
+    return `<a class="gallery__item" href=${original}>
   <img class="gallery__image" src=${preview} alt=${description} />
-</a>
-</li>`
+</a>`
 };
 
 const getGalleryItemEl = galleryItems.map(el => {

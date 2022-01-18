@@ -2,6 +2,8 @@ import throttle from "lodash.throttle";
 import localStorageApi from "./localstorage";
 
 const feedbackFormEl = document.querySelector('.feedback-form');
+const emailInputEl = document.querySelector('input[name="email"]');
+const messageInputEl = document.querySelector('textarea[name="message"]');
 const formData = {};
 const onFormInput = event => {
     const target = event.target;
@@ -12,12 +14,14 @@ const onFormInput = event => {
 const throttledFunction = throttle(onFormInput, 500);
 
 feedbackFormEl.addEventListener('input', throttledFunction);
-
 feedbackFormEl.addEventListener('submit', event => {
-    event.preventDefault();
-    event.target.reset();
+  event.preventDefault();
+  if(emailInputEl.value !== "" && messageInputEl.value !== ""){
     localStorageApi.remove('feedback-form-state');
+    event.target.reset();
     console.log(formData);
+  };
+
   });
 
   const fillFormFields = () => {

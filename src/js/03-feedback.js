@@ -14,8 +14,10 @@ const onFormInput = event => {
 const throttledFunction = throttle(onFormInput, 500);
 
 feedbackFormEl.addEventListener('input', throttledFunction);
+
 feedbackFormEl.addEventListener('submit', event => {
   event.preventDefault();
+  
   if(emailInputEl.value !== "" && messageInputEl.value !== ""){
     localStorageApi.remove('feedback-form-state');
     event.target.reset();
@@ -33,6 +35,7 @@ feedbackFormEl.addEventListener('submit', event => {
     const keys = Object.keys(localStorageFormData);
   
     for (const key of keys) {
+        formData[key] =  localStorageFormData[key];
         feedbackFormEl.elements[key].value = localStorageFormData[key];
     }
   };

@@ -9,7 +9,7 @@ const onFormInput = event => {
     localStorageApi.save('feedback-form-state', formData);
 };
 
-const throttledFunction = throttle(onFormInput, 1000);
+const throttledFunction = throttle(onFormInput, 500);
 
 feedbackFormEl.addEventListener('input', throttledFunction);
 
